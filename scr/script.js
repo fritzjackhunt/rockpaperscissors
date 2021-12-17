@@ -3,7 +3,7 @@ function computerPlay () {
 
     var random = Math.floor(Math.random() * hand.length);
     play = hand[random].toLowerCase();
-    console.log(play);
+    //console.log(play);
     return play;
 }
 
@@ -18,9 +18,9 @@ function playRound(playerSelection, computerSelection) {
     z = "scissors"
 
     if ((a === x && b === x) || (a === y && b === y) || (a === z && b === z)) {
-       return "It's a draw!, Please start again"
+        return "It's a draw!, Please start again"
     } else if (a === x && b === y)  {
-        return "You lose! " + y + " beats " + x;
+        return "You loose! " + y + " beats " + x;
     } else if (a === x && b === z)  {
         return "You win! " + x + " beats " + z;
     } else if (a === y && b === x)  {
@@ -35,24 +35,37 @@ function playRound(playerSelection, computerSelection) {
         return "Please enter either Rock, Paper or Scissors"
     }
 }
-  
+
+function game () {
+    const playerSelect = prompt("Please enter either Rock, Paper or Scissors");
+    const playerSelection = playerSelect.toLowerCase();
+    const computerSelection = computerPlay();
+
+    return playRound(playerSelection, computerSelection);
+}
+
 const playerSelect = prompt("Please enter either Rock, Paper or Scissors");
 const playerSelection = playerSelect.toLowerCase();
 const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
 
+function gamePlay () {
+    let win = 0;
+    let draw = 0;
+    let loose = 0;
+    
+    for ( var i = 0; i < 5; i++ ) {
+        const v = game();
+    
+        if (v.length == 28) {
+            win++;
+        } else if (v.length == 27 ) {
+            loose++;
+        } else {
+            draw++;
+        }
 
-function gamePlay (playerSelection, computerSelection) {
-    for (var i = 0; i < 4; i++) {
-        playRound(playerSelection, computerSelection);
+        console.log("You won " + win + " times, drew " + draw + " times, and lost " + loose + " times");
     }
 }
-const game = playRound();
-//const winner = playRound(playerSelection, computerSelection).includes("win");
-console.log(gamePlay());
-  
-/*if (i === true ) {
-    return "You've won once";
-} else {
-    return "You've lost";
-}*/
+
+const start = gamePlay();
