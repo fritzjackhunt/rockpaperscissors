@@ -36,36 +36,63 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+
+
 function game () {
-    const playerSelect = prompt("Please enter either Rock, Paper or Scissors");
+
+    const elements = document.querySelectorAll('.rocks')
+    let pick = "";
+    console.log(pick)
+    
+    elements.forEach(element => {
+        element.addEventListener("click", (e) => {
+            //console.log(element.value);
+            pick = element.value
+            return pick
+            //console.log(pick)
+        })
+    })
+
+    const playerSelect = pick;
     const playerSelection = playerSelect.toLowerCase();
     const computerSelection = computerPlay();
 
     return playRound(playerSelection, computerSelection);
 }
 
-const playerSelect = prompt("Please enter either Rock, Paper or Scissors");
-const playerSelection = playerSelect.toLowerCase();
-const computerSelection = computerPlay();
-
 function gamePlay () {
     let win = 0;
     let draw = 0;
     let loose = 0;
     
-    for ( var i = 0; i < 5; i++ ) {
-        const v = game();
     
-        if (v.length == 28) {
-            win++;
-        } else if (v.length == 27 ) {
-            loose++;
-        } else {
-            draw++;
-        }
+    const match = game();
 
-        console.log("You won " + win + " times, drew " + draw + " times, and lost " + loose + " times");
+    if (match.length == 28) {
+        win++;
+    } else if (match.length == 27 ) {
+        loose++;
+    } else {
+        draw++;
     }
+
+    document.getElementById("answer").innerHTML = "You won " + win + " times, drew " + draw + " times, and lost " + loose + " times."
+    
 }
+
+/*function myFunction () {
+    const elements = document.querySelectorAll('.rocks')
+    
+    elements.forEach(element => {
+        element.addEventListener("click", (e) => {
+            console.log(element.value);
+            const playerSelect = element.value;
+            const playerSelection = playerSelect.toLowerCase();
+            return playerSelection;  
+        })
+    })
+    const computerSelection = computerPlay(); 
+    return playRound(playerSelection, computerSelection);
+}*/
 
 const start = gamePlay();
