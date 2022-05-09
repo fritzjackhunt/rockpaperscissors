@@ -46,10 +46,9 @@ function game () {
     
     elements.forEach(element => {
         element.addEventListener("click", (e) => {
-            //console.log(element.value);
+            console.log(element.value);
             pick = element.value
             return pick
-            //console.log(pick)
         })
     })
 
